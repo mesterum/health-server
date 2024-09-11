@@ -1,6 +1,6 @@
 import passport from 'passport'
 import passportJWT from 'passport-jwt'
-import UserSchema, { User } from '../service/schemas/user.js'
+import UserSchema from '../api/auth/dbmodel.js'
 import { config } from "dotenv";
 config();
 

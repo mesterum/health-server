@@ -3,7 +3,7 @@ import logger from 'morgan'
 import cors from 'cors'
 
 import contactsRouter from './api/contacts.js'
-import authRouter from './api/auth.js'
+import authRouter from './api/auth/server.js'
 
 const app = express()
 

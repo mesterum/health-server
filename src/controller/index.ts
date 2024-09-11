@@ -2,7 +2,7 @@
 import { RequestHandler } from 'express'
 import { listContacts, getContactById, removeContact, addContact, updateContact } from '../service/index.js'
 import { DocumentType } from '@typegoose/typegoose'
-import { User } from '../service/schemas/user.js'
+import { User } from '../api/auth/dbmodel.js'
 import { Types } from 'mongoose'
 
 export const get: RequestHandler = async (req, res, next) => {

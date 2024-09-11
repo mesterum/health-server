@@ -1,12 +1,12 @@
 import express from 'express'
 import validate from 'express-zod-safe';
-import { userSchema } from '../models/user.js'
+import { userSchema } from './schema.js'
 const router = express.Router()
 
 import jwt from 'jsonwebtoken';
 import passport from 'passport';
-import UserSchema, { User } from '../service/schemas/user.js';
-import { secret } from '../config/passport.js';
+import UserSchema, { User } from './dbmodel.js';
+import { secret } from '../../config/passport.js';
 import type { RequestHandler } from 'express'
 import type { DocumentType } from '@typegoose/typegoose';
 

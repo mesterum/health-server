@@ -1,5 +1,5 @@
 import { getModelForClass, prop, Ref } from "@typegoose/typegoose";
-import { User } from "./user.js";
+import { User } from "../../api/auth/dbmodel.js";
 
 export class Contact {
   @prop({ ref: () => User })

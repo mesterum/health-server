@@ -5,7 +5,7 @@ import { contactSchema } from '../models/contacts.js' //
 // import { Contact } from '../service/schemas/contacts.js';
 import { get, getById, create, update, updateStatusContact, remove } from '../controller/index.js'
 import { z } from 'zod';
-import { auth } from './auth.js';
+import { auth } from './auth/server.js';
 
 const router = express.Router()
 
