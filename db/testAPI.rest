@@ -62,6 +62,7 @@ POST {{baseUrl}}users/signup
 Content-Type: application/json
 
 { 
+  "name": "Me",
   "email": "outlook_5CC4867C4B04E2E3@outlook.com", 
   "password": "examplepwd12345"
 }
