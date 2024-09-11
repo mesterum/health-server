@@ -42,8 +42,7 @@ router.post('/signup', validate({ body: userSchema }), async (req, res, next) =>
     // console.log(newUser.password);
     await newUser.save()
     res.status(201).json({
-      email,
-      "subscription": newUser.subscription
+      email
     })
   } catch (error) {
     next(error)
@@ -74,8 +73,7 @@ router.post('/login', validate({ body: userSchema }), async (req, res, next) => 
   res.json({
     token,
     "user": {
-      "email": user.email,
-      "subscription": user.subscription
+      "email": user.email
     }
   })
 })
@@ -83,13 +81,13 @@ router.post('/login', validate({ body: userSchema }), async (req, res, next) => 
 router.get('/logout', auth, (req, res, next) => {
   const user = req.user as DocumentType<User>
   user.token = null
-  UserSchema.findByIdAndUpdate(user._id, { token: null })
+  user.save()
   res.status(204).end()
 })
 
 router.get('/current', auth, (req, res, next) => {
-  const { email, subscription } = req.user as User
-  res.json({ email, subscription })
+  const { email } = req.user as User
+  res.json({ email })
 })
 
 export default router
