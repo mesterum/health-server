@@ -5,7 +5,7 @@ import cors from 'cors'
 import contactsRouter from './api/contacts.js'
 // import authRouter from './api/auth/server.js'
 import { createExpressEndpoints } from '@ts-rest/express';
-import UserContract from './api/auth/contract.js';
+import UserContract from './contract/users.js';
 import router from './api/auth/router.js';
 
 import { generateOpenApi } from '@ts-rest/open-api';

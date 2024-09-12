@@ -3,7 +3,7 @@ import passport from 'passport';
 import jwt from 'jsonwebtoken';
 import { secret } from '../../config/passport.js';
 import { initServer } from "@ts-rest/express";
-import UserContract from "./contract.js";
+import UserContract from "../../contract/users.js";
 import UserSchema, { User } from './dbmodel.js';
 import type { DocumentType } from '@typegoose/typegoose';
 

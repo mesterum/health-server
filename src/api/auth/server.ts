@@ -1,6 +1,6 @@
 import express from 'express'
 import validate from 'express-zod-safe';
-import { userSchema } from './schema.js'
+import { userSchema } from '../../contract/users.js';
 const router = express.Router()
 
 import jwt from 'jsonwebtoken';
