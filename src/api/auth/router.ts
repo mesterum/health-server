@@ -14,7 +14,7 @@ export const auth: RequestHandler = (req, res, next) => {
         message: 'Unauthorized'
       })
     }
-    req.user = user
+    req.authUser = user
     next()
   })(req, res, next)
 }
@@ -55,7 +55,7 @@ const UserRouter = s.router(UserContract, {
   },
   logout: {
     handler: async ({ req }) => {
-      const user = req.user as DocumentType<User>
+      const user = req.authUser
       user.token = null
       user.save()
       return { status: 204, body: undefined };
@@ -64,7 +64,7 @@ const UserRouter = s.router(UserContract, {
   },
   current: {
     handler: async ({ req }) => {
-      const { name, email } = req.user as DocumentType<User>
+      const { name, email } = req.authUser
       return { status: 200, body: { name, email } };
     },
     middleware: [auth]

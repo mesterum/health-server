@@ -11,7 +11,6 @@ import router from './api/auth/router.js';
 import { generateOpenApi } from '@ts-rest/open-api';
 import { serve, setup } from "swagger-ui-express";
 import { operationMapper } from './operationMapper.js';
-import { url } from 'inspector';
 
 const app = express()
 
@@ -31,9 +30,7 @@ const openApiDocument = generateOpenApi(UserContract, {
     version: '1.0.0',
 
   },
-  servers: [{ url: 'http://localhost:3000' },
-  { url: "https://xc8jbrf4-3000.euw.devtunnels.ms" }
-  ],
+  servers: [{ url: process.env.BASE_URL }],
   components: {
     securitySchemes: {
       bearerAuth: {

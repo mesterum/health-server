@@ -20,7 +20,7 @@ export const auth: RequestHandler = (req, res, next) => {
         data: 'Unauthorized',
       })
     }
-    req.user = user
+    req.authUser = user
     next()
   })(req, res, next)
 }
@@ -72,14 +72,14 @@ router.post('/login', validate({ body: userSchema.pick({ email: true, password: 
 })
 
 router.get('/logout', auth, (req, res, next) => {
-  const user = req.user as DocumentType<User>
+  const user = req.authUser
   user.token = null
   user.save()
   res.status(204).end()
 })
 
 router.get('/current', auth, (req, res, next) => {
-  const { name, email } = req.user as User
+  const { name, email } = req.authUser
   res.json({ name, email })
 })
 

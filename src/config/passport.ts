@@ -4,7 +4,7 @@ import UserSchema from '../api/auth/dbmodel.js'
 import { config } from "dotenv";
 config();
 
-export const PORT = process.env.PORT || 3000
+export const PORT = process.env.PORT ?? 3000
 export const uriDb = process.env.DB_HOST!
 if (!uriDb) throw new Error("Please set the environment variable: DB_HOST");
 export const secret = process.env.SECRET!

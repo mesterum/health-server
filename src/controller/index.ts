@@ -7,7 +7,7 @@ import { Types } from 'mongoose'
 
 export const get: RequestHandler = async (req, res, next) => {
   try {
-    const results = await listContacts((req.user as DocumentType<User>)._id)
+    const results = await listContacts((req.authUser)._id)
     res.json({
       status: 'success',
       code: 200,
@@ -25,7 +25,7 @@ export const getById: RequestHandler = async (req, res, next) => {
   const { contactId } = req.params
   try {
     const result = await getContactById(contactId)
-    if (result && result.owner + '' == (req.user as DocumentType<User>)._id + '') {
+    if (result && result.owner + '' == (req.authUser)._id + '') {
       res.json({
         status: 'success',
         code: 200,
@@ -47,7 +47,7 @@ export const getById: RequestHandler = async (req, res, next) => {
 
 export const create: RequestHandler = async (req, res, next) => {
   const { name, email, phone } = req.body
-  const owner = (req.user as DocumentType<User>)._id
+  const owner = (req.authUser)._id
   try {
     const result = await addContact({ name, email, phone, owner })
 
@@ -65,7 +65,7 @@ export const create: RequestHandler = async (req, res, next) => {
 export const update: RequestHandler = async (req, res, next) => {
   const id = req.params.contactId
   const fields = req.body
-  const owner = (req.user as DocumentType<User>)._id
+  const owner = (req.authUser)._id
   try {
     const result = await updateContact({ _id: new Types.ObjectId(id), owner }, fields)
     if (result) {
@@ -92,7 +92,7 @@ export const updateStatusContact: RequestHandler = async (req, res, next) => {
   const id = req.params.contactId
   if (!req.body) return res.status(400).json({ message: 'missing field favorite' })
   const { favorite = false } = req.body
-  const owner = (req.user as DocumentType<User>)._id
+  const owner = (req.authUser)._id
 
   try {
     const result = await updateContact({ _id: new Types.ObjectId(id), owner }, { favorite })
@@ -118,7 +118,7 @@ export const updateStatusContact: RequestHandler = async (req, res, next) => {
 
 export const remove: RequestHandler = async (req, res, next) => {
   const id = req.params.contactId
-  const owner = (req.user as DocumentType<User>)._id
+  const owner = (req.authUser)._id
 
   try {
     const result = await removeContact({ _id: new Types.ObjectId(id), owner })
