@@ -14,6 +14,7 @@ import { operationMapper } from './operationMapper.js';
 import { CalcContract } from './contract/calc.js';
 import { calcRouter } from './api/calc/router.js';
 import { contract } from './contract/index.js';
+import { ProductsContract, productsRouter } from './api/products/router.js';
 
 const app = express()
 
@@ -27,6 +28,7 @@ app.use('/api/contacts', contactsRouter)
 // app.use('/api/users', authRouter)
 createExpressEndpoints(UserContract, authRouter, app)
 createExpressEndpoints(CalcContract, calcRouter, app)
+createExpressEndpoints(ProductsContract, productsRouter, app)
 
 const openApiDocument = generateOpenApi(contract, {
   info: {
