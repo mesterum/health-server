@@ -64,8 +64,8 @@ const UserRouter = s.router(UserContract, {
   },
   current: {
     handler: async ({ req }) => {
-      const { name, email } = req.authUser
-      return { status: 200, body: { name, email } };
+      const { name, email, calcBase } = req.authUser
+      return { status: 200, body: { name, email, calcBase } };
     },
     middleware: [auth]
   }

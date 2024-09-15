@@ -6,11 +6,14 @@ import contactsRouter from './api/contacts.js'
 // import authRouter from './api/auth/server.js'
 import { createExpressEndpoints } from '@ts-rest/express';
 import UserContract from './contract/users.js';
-import router from './api/auth/router.js';
+import authRouter from './api/auth/router.js';
 
 import { generateOpenApi } from '@ts-rest/open-api';
 import { serve, setup } from "swagger-ui-express";
 import { operationMapper } from './operationMapper.js';
+import { CalcContract } from './contract/calc.js';
+import { calcRouter } from './api/calc/router.js';
+import { contract } from './contract/index.js';
 
 const app = express()
 
@@ -22,9 +25,10 @@ app.use(express.json())
 
 app.use('/api/contacts', contactsRouter)
 // app.use('/api/users', authRouter)
-createExpressEndpoints(UserContract, router, app)
+createExpressEndpoints(UserContract, authRouter, app)
+createExpressEndpoints(CalcContract, calcRouter, app)
 
-const openApiDocument = generateOpenApi(UserContract, {
+const openApiDocument = generateOpenApi(contract, {
   info: {
     title: 'SlimMom API',
     version: '1.0.0',

@@ -3,7 +3,7 @@ import { z } from 'zod';
 import type { SecurityRequirementObject } from "openapi3-ts";
 
 export const userSchema = z.object({
-  name: z.string({ required_error: 'Name is required' }),
+  name: z.string({ required_error: 'Name is required' }).min(3, 'Name must be at least 3 characters long'),
   // @prop({ required: [true, 'Password is required'] })
   password: z.string({ required_error: 'Password is required' }),
   // @prop({ required: [true, 'Email is required'], unique: true })

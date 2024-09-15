@@ -84,3 +84,18 @@ GET {{baseUrl}}users/logout
 {{authToken}}
 
 ###
+POST {{baseUrl}}calc
+{{authToken}}
+Content-Type: application/json
+
+{
+  "age": 25,
+    "height": 180,
+    "weight": 65,
+    "bloodType": 1,
+    "desiredWeight": 64.5
+}
+###
+GET {{baseUrl}}calc
+{{authToken}}
+###

@@ -1,5 +1,6 @@
 import { DocumentType, getModelForClass, prop } from "@typegoose/typegoose";
 import bcrypt from "bcryptjs";
+import { CalcBase } from "../calc/dbmodel.js";
 export class User {
   @prop({ required: true })
   name!: string;
@@ -12,6 +13,9 @@ export class User {
 
   @prop({ default: null, type: String })
   token?: string | null;
+
+  @prop({ default: null, type: () => CalcBase })
+  calcBase?: CalcBase;
 
   public async setPassword(this: DocumentType<User>, password: string) {
     this.password = await bcrypt.hash(password, 10);

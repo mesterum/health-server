@@ -10,7 +10,7 @@ export type CalcBase = {
   /* gender: "male" | "female"
   activity: "sedentary" | "light" | "moderate" | "active" | "veryactive"  // 1.2 - 1.375 - 1.465 - 1.55 - 1.725
   goal: "lose" | "maintain" | "gain" */
-  dailyKCalories: number
+  dailyKcalories: number
   // time: number
 
 };
