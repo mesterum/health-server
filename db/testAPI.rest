@@ -20,43 +20,6 @@ Content-Type: application/json
 
 @authToken = Authorization: Bearer {{login.response.body.$.token}}
 
-get {{baseUrl}}contacts
-{{authToken}}
-###
-get {{baseUrl}}contacts/66b5f8d080b4092880d59c06
-{{authToken}}
-###
-
-POST {{baseUrl}}contacts
-{{authToken}}
-Content-Type: application/json
-
-{
-  "name": "Allen Raymond",
-  "email": "nulla.ante@vestibul.co.uk",
-  "phone": "(992) 914-3792"
-}
-
-###
-PATCH {{baseUrl}}contacts/66b5f8d080b4092880d59c06
-{{authToken}}
-Content-Type: application/json
-
-{
- "name": "Allen Raymond1"
-}
-###
-PATCH {{baseUrl}}contacts/66b5f9c680b4092880d59c0f/favorite
-{{authToken}}
-Content-Type: application/json
-
-{
- "favorite": true
-}
-###
-
-DELETE {{baseUrl}}contacts/66b5f8d080b4092880d59c06
-{{authToken}}
 ###
 POST {{baseUrl}}users/signup
 Content-Type: application/json

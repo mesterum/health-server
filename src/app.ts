@@ -2,8 +2,6 @@ import express, { Request, Response } from 'express'
 import logger from 'morgan'
 import cors from 'cors'
 
-import contactsRouter from './api/contacts.js'
-// import authRouter from './api/auth/server.js'
 import { createExpressEndpoints } from '@ts-rest/express';
 import UserContract from './contract/users.js';
 import authRouter from './api/auth/router.js';
