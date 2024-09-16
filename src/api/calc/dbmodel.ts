@@ -1,5 +1,4 @@
 import { DocumentType, getModelForClass, prop } from "@typegoose/typegoose";
-import bcrypt from "bcryptjs";
 export class CalcBase {
 
   @prop({ required: true, min: 15, max: 80 })

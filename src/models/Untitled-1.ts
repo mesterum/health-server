@@ -33,6 +33,7 @@ export type Product = {
 export type Intake = {
   product: Product
   weight: number
+  calories: number
 }
 
 export type DailyIntake = {

@@ -15,6 +15,7 @@ import { CalcContract } from './contract/calc.js';
 import { calcRouter } from './api/calc/router.js';
 import { contract } from './contract/index.js';
 import { ProductsContract, productsRouter } from './api/products/router.js';
+import { DiaryContract, diaryRouter } from './api/diary/router.js';
 
 const app = express()
 
@@ -24,11 +25,11 @@ app.use(logger(formatsLogger))
 app.use(cors())
 app.use(express.json())
 
-app.use('/api/contacts', contactsRouter)
-// app.use('/api/users', authRouter)
+
 createExpressEndpoints(UserContract, authRouter, app)
 createExpressEndpoints(CalcContract, calcRouter, app)
 createExpressEndpoints(ProductsContract, productsRouter, app)
+createExpressEndpoints(DiaryContract, diaryRouter, app)
 
 const openApiDocument = generateOpenApi(contract, {
   info: {
@@ -51,7 +52,7 @@ const openApiDocument = generateOpenApi(contract, {
   operationMapper
 });
 
-app.use('/api-docs', serve, setup(openApiDocument));
+app.use('/doc', serve, setup(openApiDocument));
 app.get("/swagger.json", (req: Request, res: Response) => {
   res.contentType("application/json");
   res.send(JSON.stringify(openApiDocument, null, 2));
@@ -61,11 +62,8 @@ app.use((_, res, __) => {
   res.status(404).json({
     status: 'error',
     code: 404,
-    message: `Use api on routes: 
-    /api/users/signup - registration user {email, password}
-    /api/users/login - login {email, password}
-    /api/users/logout - logout
-    /api/users/current - get message if user is authenticated`,
+    message: `See the documentation for available routes on ${process.env.BASE_URL}/doc 
+    or download OpenAPI spec at ${process.env.BASE_URL}/swagger.json`,
     data: 'Not found',
   })
 })

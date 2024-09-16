@@ -3,19 +3,11 @@ import { z } from 'zod';
 import type { SecurityRequirementObject } from "openapi3-ts";
 
 export const productsSchema = z.object({
-  /*
-  categories: string
-  title: string
-  weight: number
-  calories: number
-  groupBloodNotAllowed: boolean[]
-   */
-
   categories: z.string(),
   title: z.string(),
   weight: z.number(),
   calories: z.number(),
-  groupBloodNotAllowed: z.boolean().array().length(5)
+  groupBloodNotAllowed: z.boolean().nullable().array().length(5)
 
 });
 

@@ -7,7 +7,9 @@ import UserContract from "../../contract/users.js";
 import UserSchema, { User } from './dbmodel.js';
 import type { DocumentType } from '@typegoose/typegoose';
 
-export const auth: RequestHandler = (req, res, next) => {
+export const auth: RequestHandler<{
+  [key: string]: any;
+}> = (req, res, next) => {
   passport.authenticate('jwt', { session: false }, (err: any, user?: DocumentType<User>) => {
     if (!user || err) {
       return res.status(401).json({

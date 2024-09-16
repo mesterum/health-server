@@ -101,3 +101,22 @@ GET {{baseUrl}}calc
 ###
 GET {{baseUrl}}products/?search=pea&page=3
 ###
+POST {{baseUrl}}diary/2024-09-15
+{{authToken}}
+Content-Type: application/json
+
+{
+  "product": "5d51694802b2373622ff554c",
+  "weight": 50
+}
+###
+  # "calories": -350
+DELETE {{baseUrl}}diary/2024-09-15
+{{authToken}}
+Content-Type: application/json
+
+["66e758308e5555b50da40093","66e7653b2a2ce6ab0081410e"]
+###
+GET {{baseUrl}}diary/2024-09-15
+{{authToken}}
+###
